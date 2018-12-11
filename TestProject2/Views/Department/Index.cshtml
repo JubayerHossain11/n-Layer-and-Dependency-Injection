@@ -1,0 +1,12 @@
+﻿@model List<TestProject2.Models.Department>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@foreach (var item in Model)
+{
+    <h2>@item.Name</h2> <br />
+}
+
