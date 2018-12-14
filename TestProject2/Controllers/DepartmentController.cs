@@ -11,8 +11,6 @@ namespace TestProject2.Controllers
 {
     public class DepartmentController : Controller
     {
-
-
         //DepartmentService service = new DepartmentService();
         //public ActionResult Index()
         //{
