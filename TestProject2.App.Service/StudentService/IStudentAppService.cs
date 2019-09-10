@@ -9,6 +9,6 @@ namespace TestProject2.App.Service.StudentService
 {
     public interface IStudentAppService
     {
-       List<Student> GetStudentList();
+        Task<List<Student>> GetStudentList();
     }
 }

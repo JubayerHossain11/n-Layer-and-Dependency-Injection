@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using TestProject2.App.Service.StudentService;
@@ -28,11 +29,11 @@ namespace TestProject2.Controllers
         }
 
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             var list = _departmentRepository.GetAll();
 
-            var items = _departmentService.GetStudentList();
+            var items = await _departmentService.GetStudentList();
 
             return View(list);
         }

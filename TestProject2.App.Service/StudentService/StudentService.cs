@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,9 +13,9 @@ namespace TestProject2.App.Service.StudentService
     {
         TestProject2DBContext db = new TestProject2DBContext();
 
-        public List<Student> GetStudentList()
+        public async Task<List<Student>> GetStudentList()
         {
-           return db.Students.ToList();
+           return await db.Students.ToListAsync();
         }
     }
 }

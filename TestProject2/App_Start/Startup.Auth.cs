@@ -75,8 +75,7 @@ namespace TestProject2
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
-                Provider = new AuthorizationServerProvider()
-                 
+                Provider = new AuthorizationServerProvider(),
             };
 
             // Token Generation
