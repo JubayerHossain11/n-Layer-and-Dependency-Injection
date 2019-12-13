@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
@@ -14,94 +15,12 @@ namespace TestProject2.Controllers
     {
         public ActionResult Index()
         {
-            var dir = new System.IO.DirectoryInfo(Server.MapPath("~/Content/Files/"));
-            var filePath = Server.MapPath("~/Content/Files/Md. Jubayer Hossain.pdf");
-            //System.IO.FileInfo[] fileNames = dir.GetFiles("*.*");
-            //List<string> items = new List<string>();
-
-            string from = "jubayerhossain11@outlook.com"; //example:- sourabh9303@gmail.com
-
-            var html = RenderRazorViewToString("_emailTemplate", new EmailTemplateViewModel() { Name = "Jon Snow",Address = "48/5,west amarica",ContactNo="0154478452",Email="Jonsnow@jmail.com"});
-
-            using (MailMessage mail = new MailMessage())
-            {
-                mail.From = new MailAddress("jubayerhossain11@outlook.com");
-                mail.To.Add("jubayerhossain11@gmail.com");
-                mail.Subject = "Hello World Subject";
-                //mail.Body = "<h1>mail Body___</h1> <br> <img src=\"~/Content/AdminTemplate/plugins/ckeditor/plugins/image/images/ noimage.png\"/>";
-
-                mail.Body = html;
-                mail.IsBodyHtml = true;
-                mail.Attachments.Add(new Attachment(filePath));
-
-                //using (FileStream fileStream = System.IO.File.OpenRead(filePath))
-                //{
-                //    MemoryStream memStream = new MemoryStream();
-                //    memStream.SetLength(fileStream.Length);
-                //    fileStream.Read(memStream.GetBuffer(), 0, (int)fileStream.Length);
-
-                //    mail.Attachments.Add(new Attachment(fileStream, "jubayer_CV"));
-                //}
-
-                using (SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com", 587))
-                {
-                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                    smtp.UseDefaultCredentials = false;
-                    smtp.Credentials = new NetworkCredential("jubayerhossain11@outlook.com", "2468juba");
-                    smtp.EnableSsl = true;
-                    smtp.Send(mail);
-                }
-
-            }
-
-
-
-
-            //using (MailMessage mail = new MailMessage(from, "jubayerhossain11@gmail.com"))
-
-            //{
-            //    mail.Subject = "Test Mail";
-
-            //    mail.Body = "email body for test mail";
-
-
-            //    //using (FileStream fileStream = System.IO.File.OpenRead(filePath))
-            //    //{
-            //    //    using (MemoryStream memStream = new MemoryStream()) {
-            //    //        memStream.SetLength(fileStream.Length);
-            //    //        fileStream.Read(memStream.GetBuffer(), 0, (int)fileStream.Length);
-            //    //    };
-            //    //    mail.Attachments.Add(new Attachment(fileStream, "jubayer_CV", System.Net.Mime.MediaTypeNames.Application.Pdf));
-            //    //}
-
-
-            //    mail.Attachments.Add(new Attachment(filePath));
-            //    mail.IsBodyHtml = true;
-
-            //    SmtpClient smtp = new SmtpClient();
-
-            //    smtp.Host = "smtp-mail.outlook.com";
-
-            //    smtp.EnableSsl = true;
-
-            //    NetworkCredential networkCredential = new NetworkCredential(from, "2468juba");
-
-            //    smtp.UseDefaultCredentials = false;
-
-            //    smtp.Credentials = networkCredential;
-            //    smtp.Port = 587;
-            //    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-
-            //    smtp.Send(mail);
-
-            //    ViewBag.Message = "Sent";
-
-            //}
-
-
+            double DEBITAMT = Math.Round(1156.547, 2);
+            double DEBITAMT2 = Math.Round(1156.547, 1);
+            double DEBITAMT3 = Math.Round(1156.547, 3);
+            double DEBITAMT4 = Math.Round(0.00, 3);
             return View();
         }
-
 
         private string RenderRazorViewToString(string viewName, object model)
         {
@@ -114,7 +33,6 @@ namespace TestProject2.Controllers
                 return sw.GetStringBuilder().ToString();
             }
         }
-
 
         public ActionResult About()
         {
@@ -221,7 +139,93 @@ namespace TestProject2.Controllers
         //        return View();
         //    }
         //}
+        public ActionResult SendMail()
+        {
+            var dir = new System.IO.DirectoryInfo(Server.MapPath("~/Content/Files/"));
+            var filePath = Server.MapPath("~/Content/Files/Md. Jubayer Hossain.pdf");
+            //System.IO.FileInfo[] fileNames = dir.GetFiles("*.*");
+            //List<string> items = new List<string>();
 
+            string from = "jubayerhossain11@outlook.com"; //example:- sourabh9303@gmail.com
+
+            var html = RenderRazorViewToString("_emailTemplate", new EmailTemplateViewModel() { Name = "Jon Snow",Address = "48/5,west amarica",ContactNo="0154478452",Email="Jonsnow@jmail.com"});
+
+            using (MailMessage mail = new MailMessage())
+            {
+                mail.From = new MailAddress("jubayerhossain11@outlook.com");
+                mail.To.Add("jubayerhossain11@gmail.com");
+                mail.Subject = "Hello World Subject";
+                //mail.Body = "<h1>mail Body___</h1> <br> <img src=\"~/Content/AdminTemplate/plugins/ckeditor/plugins/image/images/ noimage.png\"/>";
+
+                mail.Body = html;
+                mail.IsBodyHtml = true;
+                mail.Attachments.Add(new Attachment(filePath));
+
+                //using (FileStream fileStream = System.IO.File.OpenRead(filePath))
+                //{
+                //    MemoryStream memStream = new MemoryStream();
+                //    memStream.SetLength(fileStream.Length);
+                //    fileStream.Read(memStream.GetBuffer(), 0, (int)fileStream.Length);
+
+                //    mail.Attachments.Add(new Attachment(fileStream, "jubayer_CV"));
+                //}
+
+                using (SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com", 587))
+                {
+                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = new NetworkCredential("jubayerhossain11@outlook.com", "2468juba");
+                    smtp.EnableSsl = true;
+                    smtp.Send(mail);
+                }
+
+            }
+
+
+
+
+            //using (MailMessage mail = new MailMessage(from, "jubayerhossain11@gmail.com"))
+
+            //{
+            //    mail.Subject = "Test Mail";
+
+            //    mail.Body = "email body for test mail";
+
+
+            //    //using (FileStream fileStream = System.IO.File.OpenRead(filePath))
+            //    //{
+            //    //    using (MemoryStream memStream = new MemoryStream()) {
+            //    //        memStream.SetLength(fileStream.Length);
+            //    //        fileStream.Read(memStream.GetBuffer(), 0, (int)fileStream.Length);
+            //    //    };
+            //    //    mail.Attachments.Add(new Attachment(fileStream, "jubayer_CV", System.Net.Mime.MediaTypeNames.Application.Pdf));
+            //    //}
+
+
+            //    mail.Attachments.Add(new Attachment(filePath));
+            //    mail.IsBodyHtml = true;
+
+            //    SmtpClient smtp = new SmtpClient();
+
+            //    smtp.Host = "smtp-mail.outlook.com";
+
+            //    smtp.EnableSsl = true;
+
+            //    NetworkCredential networkCredential = new NetworkCredential(from, "2468juba");
+
+            //    smtp.UseDefaultCredentials = false;
+
+            //    smtp.Credentials = networkCredential;
+            //    smtp.Port = 587;
+            //    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+            //    smtp.Send(mail);
+
+            //    ViewBag.Message = "Sent";
+
+            //}
+            return View();
+        }
 
 
     }
